@@ -8,6 +8,9 @@ import (
 	"io"
 	"os"
 	"strconv"
+
+	"algorithms/bubblesort"
+	"algorithms/qsort"
 )
 
 var infile *string = flag.String("i", "unsorted.dat", "File contains values for sortting")
@@ -65,15 +68,22 @@ func writeValues(values []int, outfile string) error {
 }
 
 func main () {
+	// 解析命令行参数
 	flag.Parse()
-	if infile == nil {
-		return
-	}
-	fmt.Println("infile =", *infile, "outfile =", *outfile, "algorithm =", *algorithm)
 
 	values, err := readValues(*infile)
 	if err == nil {
 		fmt.Println("Read values:", values)
+		switch *algorithm {
+			case "bubblesort":
+				bubblesort.BubbleSort(values)
+			case "qsort":
+				qsort.QuickSort(values)
+			default:
+				fmt.Println("Sorting algorithm", *algorithm, "is unknown.")
+		}
+		fmt.Println("Write values:", values)
+		writeValues(values, *outfile)
 	} else {
 		fmt.Println(err)
 	}
