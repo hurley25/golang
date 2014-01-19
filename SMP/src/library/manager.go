@@ -1,3 +1,5 @@
+// manager.go
+
 package library
 
 import "errors"
@@ -5,6 +7,7 @@ import "errors"
 type MusicEntry struct {
 	Id     string
 	Name   string
+	Genre  string
 	Artist string
 	Source string
 	Type   string
@@ -52,7 +55,7 @@ func (m *MusicManager) Remove(index int) *MusicEntry {
 
 	removedMusic := &m.musics[index]
 
-	if index < len(m.music) - 1 {
+	if index < len(m.musics) - 1 {
 		m.musics = append(m.musics[:index-1], m.musics[index+1:]...)
 	} else if index == 0 {
 		m.musics = make([]MusicEntry, 0)
