@@ -18,7 +18,7 @@ func (p *MP3Player)Play(source string) {
 	p.progress = 0
 
 	for p.progress < 100 {
-		time.Sleep(100 * time.Millsecind)	// 假装播放
+		time.Sleep(100 * time.Millisecond)	// 假装播放
 		fmt.Print(".")
 		p.progress += 10
 	}

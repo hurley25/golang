@@ -7,8 +7,8 @@ import "errors"
 type MusicEntry struct {
 	Id     string
 	Name   string
-	Genre  string
 	Artist string
+	Genre  string
 	Source string
 	Type   string
 }
@@ -55,6 +55,7 @@ func (m *MusicManager) Remove(index int) *MusicEntry {
 
 	removedMusic := &m.musics[index]
 
+	// TODO BUG
 	if index < len(m.musics) - 1 {
 		m.musics = append(m.musics[:index-1], m.musics[index+1:]...)
 	} else if index == 0 {
