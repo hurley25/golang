@@ -6,7 +6,6 @@ package main
 // 导入 fmt 包，注意不得包含没有使用的包
 import "fmt"
 
-//
 // main 函数不能带参数和返回值，传入的参数保存在 os.Args 中
 // 如果需要支持命令行参数，可以用 flag 包
 //
