@@ -5,8 +5,8 @@ package main
 import "fmt"
 
 func Count(ch chan int) {
-	ch <- 1
 	fmt.Println("Counting...")
+	ch <- 1
 }
 
 func main() {
