@@ -29,6 +29,7 @@ func (m *MusicManager) Get(index int) (music *MusicEntry, err error) {
 	if index < 0 || index >= len(m.musics) {
 		return nil, errors.New("Index out of range.")
 	}
+
 	return &m.musics[index], nil
 }
 
@@ -36,11 +37,13 @@ func (m *MusicManager) Find(name string) *MusicEntry {
 	if len(m.musics) == 0 {
 		return nil
 	}
+
 	for _, m := range m.musics {
 		if m.Name == name {
 			return &m
 		}
 	}
+
 	return nil
 }
 
@@ -55,13 +58,12 @@ func (m *MusicManager) Remove(index int) *MusicEntry {
 
 	removedMusic := &m.musics[index]
 
-	// TODO BUG
-	if index < len(m.musics) - 1 {
-		m.musics = append(m.musics[:index-1], m.musics[index+1:]...)
-	} else if index == 0 {
-		m.musics = make([]MusicEntry, 0)
+	if index == 0 {
+		m.musics = m.musics[index+1:]
+	} else if index == len(m.musics)-1 {
+		m.musics = m.musics[:index]
 	} else {
-		m.musics = m.musics[:index-1]
+		m.musics = append(m.musics[:index-1], m.musics[index+1:]...)
 	}
 
 	return removedMusic
